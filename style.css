@@ -1,0 +1,28 @@
+.container{
+    border: 2px solid black;
+    margin: 5% 10%;
+    position: relative;
+}
+.heading{
+    font-size: 1.25em;
+    margin: 0% 4%;
+}
+.description{
+    font-size: 1.25em;
+    margin: 4%;
+}
+.todo-section{
+    height: 100%;
+    width: 50%;
+}
+#show-tasks{
+    border: 2px solid red;
+}
+#write-tasks{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 48%;
+    height: 98%;
+    font-size: 3.5em;
+}
