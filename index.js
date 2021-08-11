@@ -9,7 +9,7 @@ let inputArea = document.querySelector("#write-tasks");
 // Event Listeners
 inputArea.addEventListener("keyup",function(event){
     let todo_text = inputArea.value;
-    if(todo_text && event.keyCode === 13){
+    if(todo_text != "" && event.keyCode === 13){
         addTodo();
     }
 });  
@@ -17,19 +17,11 @@ inputArea.addEventListener("keyup",function(event){
 function addTodo(event) {
     
         let text_val = inputArea.value;
-        let darkColoredListItem = document.createElement("div");
-        darkColoredListItem.classList.add("dark-bg-div");
 
         let listItemParentDiv = document.createElement("div");
-        
-        darkColoredListItem.appendChild(listItemParentDiv);
-        
-        darkColoredListItem.style.padding = "0.25% 0.5%";
-        darkColoredListItem.style.margin = "0.5%";
-        // darkColoredListItem.style.backgroundColor = "darkgray";
         listItemParentDiv.classList.add("list-item");
         listItemParentDiv.style.position = "relative";
-        // listItemParentDiv.style.padding = "2%";
+        listItemParentDiv.style.margin = "2%";
         listItemParentDiv.style.backgroundColor = "white";
         
 
@@ -53,7 +45,7 @@ function addTodo(event) {
         // adding test value to created element
         childTextElem.innerText = text_val;
         childTextElem.style.fontSize = "1.5em";
-
+        
         // 2nd div tag
         // Creating and adding div tag to add checkbox and delete button
         let buttonDivForListItems = document.createElement("div");
@@ -68,34 +60,53 @@ function addTodo(event) {
         
         // Creating and adding checkbox to buttonDivForListItems
         let childCheckBoxElem = document.createElement("input");
+        
         childCheckBoxElem.type = "checkbox";
         childCheckBoxElem.classList.add("checkBox");
+
+        // Added task completion functionality
+        childCheckBoxElem.addEventListener("click",function strikeThroughTask(){
+            if (childCheckBoxElem.checked) {
+                childTextElem.style.textDecoration = "line-through";
+            }
+            else{
+                childTextElem.style.textDecoration = "none";
+            }
+        });
+
         childCheckBoxElem.style.height = "1.35em";
         childCheckBoxElem.style.width = "1.35em";
         // childCheckBoxElem.style.padding = "2%";
-        
+
         buttonDivForListItems.appendChild(childCheckBoxElem);
         // console.log(buttonDivForListItems);  
-
-        
-        
+    
         // Creating and adding delete button to buttonDivForListItem
-        let childDeleteElem = document.createElement("button");
-        childDeleteElem.classList.add("delete-btn");
-        childDeleteElem.style.float = "right";
-        childDeleteElem.innerText = "X";
-        childDeleteElem.style.fontSize = "0.95em";
-        childDeleteElem.style.backgroundColor = "white";
-        childDeleteElem.style.border = "2px solid white";
+        let childDeleteBtn = document.createElement("button");
         
-        buttonDivForListItems.appendChild(childDeleteElem);
+        childDeleteBtn.classList.add("delete-btn");
+        childDeleteBtn.style.float = "right";
+        childDeleteBtn.innerText = "X";
+        childDeleteBtn.style.fontSize = "0.95em";
+        childDeleteBtn.style.backgroundColor = "white";
+        childDeleteBtn.style.border = "2px solid white";
         
-        
+        childDeleteBtn.addEventListener("click",function removeTask(event){
+             
+             event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+            
+        });
+
+        buttonDivForListItems.appendChild(childDeleteBtn);
+
         listItemParentDiv.appendChild(textElemDiv);
         listItemParentDiv.appendChild(buttonDivForListItems);
         
-        parentOfListItems.appendChild(darkColoredListItem);
+        parentOfListItems.appendChild(listItemParentDiv);
         
         inputArea.value = "";
 }
+    
+  
 
+    
