@@ -2,6 +2,7 @@
     border: 2px solid black;
     margin: 5% 10%;
     position: relative;
+    background-color: darkgray;
 }
 .heading{
     font-size: 1.25em;
@@ -9,20 +10,23 @@
 }
 .description{
     font-size: 1.25em;
-    margin: 4%;
+    margin: 3%;
 }
 .todo-section{
     height: 100%;
     width: 50%;
 }
 #show-tasks{
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 #write-tasks{
     position: absolute;
     top: 0%;
     right: 0%;
+    border: none;
+    background-color: rgb(196, 206, 214);
     width: 48%;
-    height: 98%;
-    font-size: 3.5em;
+    height: 98.75%;
+    font-size: 4.5em;
+    
 }
