@@ -1,5 +1,10 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
 .container{
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    border-radius: 0.5em;
+    padding: 0.5em;
     margin: 5% 10%;
     position: relative;
     background-color: rgb(156, 154, 154);
@@ -20,13 +25,15 @@
     /* border: 2px solid red; */
 }
 #write-tasks{
+    font-family: 'Open Sans', sans-serif;
     position: absolute;
     top: 0%;
     right: 0%;
     border: none;
-    background-color: rgb(196, 206, 214);
-    width: 48%;
-    height: 98.75%;
-    font-size: 4.5em;
-    
+    border-radius: 0em 0.1em 0.1em 0em;
+    background-color: rgb(224, 220, 220);
+    width: 49%;
+    height: 98.5%;
+    font-size: 3.5em;
+    resize: vertical;
 }
