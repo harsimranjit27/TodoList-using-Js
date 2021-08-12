@@ -22,7 +22,7 @@ function addTodo(event) {
         listItemParentDiv.classList.add("list-item");
         listItemParentDiv.style.position = "relative";
         listItemParentDiv.style.margin = "2%";
-        listItemParentDiv.style.backgroundColor = "white";
+        listItemParentDiv.style.backgroundColor = "rgb(224, 220, 220)";
         
 
         // 1st div tag
@@ -88,8 +88,8 @@ function addTodo(event) {
         childDeleteBtn.style.float = "right";
         childDeleteBtn.innerText = "X";
         childDeleteBtn.style.fontSize = "0.95em";
-        childDeleteBtn.style.backgroundColor = "white";
-        childDeleteBtn.style.border = "2px solid white";
+        childDeleteBtn.style.backgroundColor = "rgb(224, 220, 220)";
+        childDeleteBtn.style.border = "2px solid rgb(224, 220, 220)";
         
         childDeleteBtn.addEventListener("click",function removeTask(event){
              
