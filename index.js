@@ -17,9 +17,14 @@ inputArea.addEventListener("keyup",function(event){
     }
 });  
 
+getTodoFromLocalStorage();
+
 function addTodo(event) {    
     let text_val = inputArea.value;
 
+    // ADD TODO TO LOCAL STORAGE
+    saveTodoToLocalStorage(text_val);
+    
     // ADD TODO TO DOM
     addTodoToDOM(text_val);
     inputArea.value = "";
@@ -103,6 +108,7 @@ function addTodoToDOM(text_val) {
 
 function removeTask(event){
     event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+    removeTaskFromLocalStorage(event);
 }
 
 function strikeThroughTask(event){
@@ -113,4 +119,58 @@ function strikeThroughTask(event){
     else{
         event.target.parentNode.parentNode.childNodes[1].firstChild.parentNode.parentNode.firstChild.firstChild.style.textDecoration = "none";
     }
+}
+
+function saveTodoToLocalStorage(text_val){
+
+    // NOTHING IN LOCAL STORAGE CREATE ARRAY OF taskItems
+    if (localStorage.getItem("taskListItems") === null) {
+        var taskItems = [];
+    }
+    // RETRIEVE ARRAY ELEMENTS FROM taskItems ARRAY
+    else{
+        taskItems = JSON.parse(localStorage.getItem("taskListItems"));
+    }
+
+    // PUSHING TASK LIST ITEMS INTO ARRAY
+    taskItems.push(text_val);
+    // SETTING TASK LIST ITEMS INTO LOCAL STORAGE
+    localStorage.setItem("taskListItems",JSON.stringify(taskItems));
+
+}
+
+function getTodoFromLocalStorage(text_val) {
+
+    // NOTHING IN LOCAL STORAGE CREATE ARRAY OF taskItems
+    if (localStorage.getItem("taskListItems") === null) {
+        var taskItems = [];
+    }
+    // RETRIEVE ARRAY ELEMENTS FROM taskItems ARRAY
+    else{
+        taskItems = JSON.parse(localStorage.getItem("taskListItems"));
+    }
+
+
+    taskItems.forEach(function(text_val){
+        addTodoToDOM(text_val);
+    });
+}
+
+function removeTaskFromLocalStorage(event) {
+
+    // NOTHING IN LOCAL STORAGE CREATE ARRAY OF taskItems
+    if (localStorage.getItem("taskListItems") === null) {
+        var taskItems = [];
+    }
+    // RETRIEVE ARRAY ELEMENTS FROM taskItems ARRAY
+    else{
+        taskItems = JSON.parse(localStorage.getItem("taskListItems"));
+    }
+
+    let listItem = event.target.parentNode.parentNode.childNodes[1].firstChild.parentNode.parentNode.firstChild.firstChild.innerText + "\n";
+    let index = taskItems.indexOf(listItem);
+    // console.log(index);
+    taskItems.splice(index,1);
+
+    localStorage.setItem("taskListItems",JSON.stringify(taskItems));
 }
