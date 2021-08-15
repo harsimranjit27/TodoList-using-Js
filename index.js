@@ -3,16 +3,17 @@ let btn = document.getElementById("btn");
 let parentOfListItems = document.getElementById("tasks-list");
 // parentOfListItems.style.border = "2px solid teal";
 let inputArea = document.querySelector("#write-tasks");
+inputArea.focus();
 
 // EVENT LISTENERS
 inputArea.addEventListener("keyup",function(event){
     // CHECK PRESS OF ENTER KEY
-    if(event.keyCode === 13){
-        let todo_text = inputArea.value;
-        if(todo_text){
-            addTodo();
-            taskItems.push(todo_text);
-        }
+    let todo_text = inputArea.value;
+    if(todo_text === "\n"){
+        window.location.reload();
+    }
+    else if(event.keyCode === 13){    
+        addTodo();
     }
 });  
 
@@ -25,7 +26,6 @@ function addTodo(event) {
 }
 
 function addTodoToDOM(text_val) {
-
     let listItemParentDiv = document.createElement("div");
     listItemParentDiv.classList.add("list-item");
     listItemParentDiv.style.position = "relative";
